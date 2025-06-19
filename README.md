@@ -1,4 +1,4 @@
-# Portafolio Web de Aplicaciones
+# Portafolio Web de Aplicaciones - David Rivera Studio
 
 Este proyecto es un sitio web profesional que sirve como portafolio y centro de descarga para aplicaciones móviles y web. El sitio está construido con HTML, CSS y JavaScript puro en el frontend, y utiliza Node.js con Express.js en el backend, conectándose a una base de datos Microsoft SQL Server.
 
