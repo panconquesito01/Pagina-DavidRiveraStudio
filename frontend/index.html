@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio - Aplicaciones Web y Móviles</title>
+    <title>Portafolio - Aplicaciones Web y Móviles</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Animate.css -->
@@ -15,7 +16,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand animate__animated animate__fadeIn" href="#">
-                <h1 class="h4 mb-0">Mi Portafolio</h1>
+                <img src="assets/img/logo.svg" alt="David Rivera Studio" height="40" class="me-2">
+                <h1 class="h4 mb-0 d-none d-lg-inline-block">Portafolio Web de Aplicaciones</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -36,11 +38,11 @@
         </div>
     </nav>
 
-    <section class="hero vh-100 d-flex align-items-center" id="inicio">
-        <div class="container text-center animate__animated animate__fadeInUp">
-            <h2 class="display-4 fw-bold mb-4">Bienvenido a mi Portafolio</h2>
-            <p class="lead mb-4">Descubre mis aplicaciones web y móviles innovadoras</p>
-            <a href="#proyectos" class="btn btn-primary btn-lg">Ver Proyectos</a>
+    <section class="hero vh-100 d-flex align-items-center position-relative" id="inicio">
+        <div class="container text-center animate__animated animate__fadeInUp position-relative" style="z-index: 2;">
+            <h2 class="display-4 fw-bold mb-4 text-white text-shadow">Bienvenido a mi Portafolio</h2>
+            <p class="lead mb-4 text-white text-shadow">Descubre mis aplicaciones web y móviles innovadoras</p>
+            <a href="#proyectos" class="btn btn-light btn-lg shadow-lg hover-scale">Ver Proyectos</a>
         </div>
     </section>
 
@@ -50,7 +52,7 @@
             <div class="row g-4">
                 <div class="col-md-6 animate__animated animate__fadeInLeft">
                     <div class="card h-100 bg-dark border-light project-card">
-                        <img src="assets/img/magic4rt-preview.jpg" class="card-img-top" alt="Magic 4rt+">
+                        <img src="assets/img/magic4rt-preview.png" class="card-img-top" alt="Magic 4rt+">
                         <div class="card-body">
                             <h3 class="card-title h4">Magic 4rt+</h3>
                             <p class="card-text">Red social para artistas inspirada en Pinterest e Instagram</p>
@@ -64,7 +66,7 @@
 
                 <div class="col-md-6 animate__animated animate__fadeInRight">
                     <div class="card h-100 bg-dark border-light project-card">
-                        <img src="assets/img/buzzup-preview.jpg" class="card-img-top" alt="Buzzup">
+                        <img src="assets/img/buzzup-preview.png" class="card-img-top" alt="Buzzup">
                         <div class="card-body">
                             <h3 class="card-title h4">Buzzup</h3>
                             <p class="card-text">Nueva red social basada en Facebook e Instagram</p>

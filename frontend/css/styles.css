@@ -1,23 +1,79 @@
 /* Animación de fondo */
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes gradientPan {
+    0% {
+        background-position: 0% 50%;
+        background-size: 200% 200%;
+    }
+    50% {
+        background-position: 100% 50%;
+        background-size: 150% 150%;
+    }
+    100% {
+        background-position: 0% 50%;
+        background-size: 200% 200%;
+    }
 }
 
 /* Estilos personalizados */
 body {
     font-family: 'Arial', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(-45deg, #1a1a1a, #2d2d2d, #1a1a1a, #2d2d2d);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    background: linear-gradient(-45deg, #274b74, #8233c5, #e963fd);
+    background-size: 200% 200%;
+    animation: gradientPan 15s ease-in-out infinite;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Efectos de texto y botones */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('../assets/img/hero-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Ajustes de navegación */
 .navbar {
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    background: rgba(26, 26, 26, 0.8) !important;
+}
+
+.navbar.scrolled {
+    background: rgba(26, 26, 26, 0.95) !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-brand h1 {

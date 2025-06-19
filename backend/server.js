@@ -10,13 +10,12 @@ app.use(express.json());
 
 // Configuración de la base de datos
 const dbConfig = {
-    user: 'sa', // Cambiar según tu configuración
-    password: 'tu_contraseña', // Cambiar según tu configuración
     server: 'localhost',
     database: 'PortafolioWeb',
     options: {
         encrypt: true,
-        trustServerCertificate: true
+        trustServerCertificate: true,
+        trustedConnection: true // Para Windows Authentication
     }
 };
 

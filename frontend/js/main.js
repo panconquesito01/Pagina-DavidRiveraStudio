@@ -8,18 +8,39 @@ function formatDate(dateString) {
 }
 
 function showError(message) {
-    const toast = new bootstrap.Toast(document.createElement('div'));
-    toast.classList.add('toast', 'bg-danger', 'text-white');
-    toast.innerHTML = `
-        <div class="toast-header bg-danger text-white">
-            <i class="bi bi-exclamation-circle me-2"></i>
-            <strong class="me-auto">Error</strong>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+    const toastContainer = document.createElement('div');
+    toastContainer.classList.add('toast-container', 'position-fixed', 'bottom-0', 'end-0', 'p-3');
+    toastContainer.style.zIndex = '1050';
+    
+    const toastEl = document.createElement('div');
+    toastEl.classList.add('toast', 'align-items-center', 'text-white', 'bg-danger', 'border-0');
+    toastEl.setAttribute('role', 'alert');
+    toastEl.setAttribute('aria-live', 'assertive');
+    toastEl.setAttribute('aria-atomic', 'true');
+    
+    toastEl.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body">${message}</div>
     `;
-    document.body.appendChild(toast);
+    
+    toastContainer.appendChild(toastEl);
+    document.body.appendChild(toastContainer);
+    
+    const toast = new bootstrap.Toast(toastEl, {
+        animation: true,
+        autohide: true,
+        delay: 5000
+    });
     toast.show();
+    
+    toastEl.addEventListener('hidden.bs.toast', () => {
+        document.body.removeChild(toastContainer);
+    });
 }
 
 // Animaciones de scroll suave para los enlaces de navegación
@@ -47,6 +68,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Animación del navbar al hacer scroll
 const navbar = document.querySelector('.navbar');
 let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        navbar.classList.add('scrolled');
+    } else if (currentScroll < lastScroll || currentScroll <= 100) {
+        navbar.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Función para cargar los proyectos con animaciones
+async function loadProjects() {
+    try {
+        const response = await fetch(`${API_URL}/proyectos`);
+        const proyectos = await response.json();
+        
+        const container = document.querySelector('#proyectos .row');
+        container.innerHTML = '';
+        
+        proyectos.forEach((proyecto, index) => {
+            const delay = index * 200;
+            const card = document.createElement('div');
+            card.className = 'col-md-6 col-lg-4 animate__animated animate__fadeInUp';
+            card.style.animationDelay = `${delay}ms`;
+            
+            card.innerHTML = `
+                <div class="card h-100 bg-dark border-0 shadow-lg">
+                    <img src="assets/img/project${index + 1}.svg" class="card-img-top p-3" alt="${proyecto.Nombre}">
+                    <div class="card-body">
+                        <h5 class="card-title">${proyecto.Nombre}</h5>
+                        <p class="card-text text-muted">${proyecto.Descripcion}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">${formatDate(proyecto.FechaPublicacion)}</small>
+                            <a href="proyecto.html?id=${proyecto.Id}" class="btn btn-primary">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(card);
+        });
+    } catch (error) {
+        showError('Error al cargar los proyectos: ' + error.message);
+    }
+}
+
+// Cargar proyectos cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', loadProjects);
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
